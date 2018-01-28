@@ -1,0 +1,19 @@
+######## 채팅 서버 관련 ########
+maven build 할 때 goals 옵션  : 
+
+clean compile assembly:single
+
+# 파일을 서버에 올리고 실행
+
+chatServerStart.sh 를 같은 폴더 에 올리고 
+실행 권한 :
+
+chmod 777 chatServerStart.sh 
+
+실행 :
+
+./chatServerStart.sh 
+
+# 셧다운 
+ps -ef | grep java
+kill -9 [pid]

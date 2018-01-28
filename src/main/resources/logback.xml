@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<property resource="config.properties" />
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>chat.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> <!-- daily rollover -->
+			<fileNamePattern>chat.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<!-- keep 30 days worth of history -->
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{HH:mm:ss} %-4relative [%thread] %-5level %logger{35} -
+				%msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	<appender name="DB" class="com.lihaorong.dao.ChatDao">
+		<connectionSource
+			class="ch.qos.logback.core.db.DriverManagerConnectionSource">
+			<driverClass>${jdbc.driver}</driverClass>
+			<url>${jdbc.url}</url>
+			<user>${jdbc.user}</user>
+			<password>${jdbc.password}</password>
+		</connectionSource>
+		<sqlDialect class="ch.qos.logback.core.db.dialect.MySQLDialect" />
+		<dbNameResolver class="com.lihaorong.dao.ChatDao" />
+		<insertHeaders>true</insertHeaders>
+	</appender>
+
+	<appender name="asyncDB" class="ch.qos.logback.classic.AsyncAppender">
+		<appender-ref ref="DB" />
+		<includeCallerData>true</includeCallerData>
+	</appender>
+
+	<logger name="com.lihaorong.chat" level="info">
+		<appender-ref ref="asyncDB" />
+	</logger>
+
+	<root level="debug">
+		<appender-ref ref="FILE" />
+	</root>
+</configuration>

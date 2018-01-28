@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc
+							http://www.springframework.org/schema/mvc/spring-mvc.xsd
+							http://www.springframework.org/schema/beans
+							http://www.springframework.org/schema/beans/spring-beans.xsd
+							http://www.springframework.org/schema/context
+							http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	    					http://www.springframework.org/schema/task
+	    					http://www.springframework.org/schema/task/spring-task-3.1.xsd">
+	<context:property-placeholder location="classpath:config.properties" />
+
+	<bean id="dataSource" class="com.mysql.jdbc.jdbc2.optional.MysqlDataSource">
+		<property name="url" value="${jdbc.url}" />
+		<property name="encoding" value="utf-8" />
+		<property name="user" value="${jdbc.user}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="userCountDao" class="com.lihaorong.dao.UserCounterDao">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+	
+	<bean id="userCountService" class="com.lihaorong.service.UserCounterService">
+		<property name="userCounterDao" ref="userCountDao" />
+	</bean>
+	
+	<bean id="blockUserDao" class="com.lihaorong.dao.BlockUserDao">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+	
+	<bean id="userChatBlockService" class="com.lihaorong.service.UserChatBlockService">
+		<property name="blockUserDao" ref="blockUserDao" />
+	</bean>
+	
+	<task:scheduler id="jobScheduler" pool-size="10" />
+	<task:scheduled-tasks scheduler="jobScheduler">
+		<task:scheduled ref="userCountService" method="saveCount" cron="0 * * * * *"/>
+		<task:scheduled ref="userChatBlockService" method="blockUser" cron="0/30 * * * * *"/>
+	</task:scheduled-tasks>
+</beans>
