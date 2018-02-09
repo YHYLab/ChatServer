@@ -1,4 +1,4 @@
-package com.lihaorong.bean;
+package com.yhy.bean;
 
 import io.netty.channel.Channel;
 

@@ -15,7 +15,7 @@
 			</pattern>
 		</encoder>
 	</appender>
-	<appender name="DB" class="com.lihaorong.dao.ChatDao">
+	<appender name="DB" class="com.yhy.dao.ChatDao">
 		<connectionSource
 			class="ch.qos.logback.core.db.DriverManagerConnectionSource">
 			<driverClass>${jdbc.driver}</driverClass>
@@ -24,7 +24,7 @@
 			<password>${jdbc.password}</password>
 		</connectionSource>
 		<sqlDialect class="ch.qos.logback.core.db.dialect.MySQLDialect" />
-		<dbNameResolver class="com.lihaorong.dao.ChatDao" />
+		<dbNameResolver class="com.yhy.dao.ChatDao" />
 		<insertHeaders>true</insertHeaders>
 	</appender>
 
@@ -33,7 +33,7 @@
 		<includeCallerData>true</includeCallerData>
 	</appender>
 
-	<logger name="com.lihaorong.chat" level="info">
+	<logger name="com.yhy.chat" level="info">
 		<appender-ref ref="asyncDB" />
 	</logger>
 

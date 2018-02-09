@@ -1,4 +1,4 @@
-package com.lihaorong.dao;
+package com.yhy.dao;
 
 import java.lang.reflect.Method;
 import java.sql.Connection;

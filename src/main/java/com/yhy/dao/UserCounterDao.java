@@ -1,4 +1,4 @@
-package com.lihaorong.dao;
+package com.yhy.dao;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

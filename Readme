@@ -1,19 +1,19 @@
-######## Ã¤ÆÃ ¼­¹ö °ü·Ã ########
-maven build ÇÒ ¶§ goals ¿É¼Ç  : 
+######## ì±„íŒ… ì„œë²„ ê´€ë ¨ ########
+maven build í•  ë•Œ goals ì˜µì…˜  : 
 
 clean compile assembly:single
 
-# ÆÄÀÏÀ» ¼­¹ö¿¡ ¿Ã¸®°í ½ÇÇà
+# íŒŒì¼ì„ ì„œë²„ì— ì˜¬ë¦¬ê³  ì‹¤í–‰
 
-chatServerStart.sh ¸¦ °°Àº Æú´õ ¿¡ ¿Ã¸®°í 
-½ÇÇà ±ÇÇÑ :
+chatServerStart.sh ë¥¼ ê°™ì€ í´ë” ì— ì˜¬ë¦¬ê³  
+ì‹¤í–‰ ê¶Œí•œ :
 
 chmod 777 chatServerStart.sh 
 
-½ÇÇà :
+ì‹¤í–‰ :
 
 ./chatServerStart.sh 
 
-# ¼Ë´Ù¿î 
+# ì…§ë‹¤ìš´ 
 ps -ef | grep java
 kill -9 [pid]

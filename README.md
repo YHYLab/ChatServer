@@ -1,5 +1,5 @@
-# WFChatServer
-원더플릭 채팅 서버
+# ChatServer
+채팅 서버
 
 ## DB,포트 설정파일 
   - config.properties

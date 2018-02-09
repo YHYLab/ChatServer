@@ -1,4 +1,4 @@
-package com.lihaorong.chat;
+package com.yhy.chat;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;

@@ -23,19 +23,19 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-	<bean id="userCountDao" class="com.lihaorong.dao.UserCounterDao">
+	<bean id="userCountDao" class="com.yhy.dao.UserCounterDao">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
 	
-	<bean id="userCountService" class="com.lihaorong.service.UserCounterService">
+	<bean id="userCountService" class="com.yhy.service.UserCounterService">
 		<property name="userCounterDao" ref="userCountDao" />
 	</bean>
 	
-	<bean id="blockUserDao" class="com.lihaorong.dao.BlockUserDao">
+	<bean id="blockUserDao" class="com.yhy.dao.BlockUserDao">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
 	
-	<bean id="userChatBlockService" class="com.lihaorong.service.UserChatBlockService">
+	<bean id="userChatBlockService" class="com.yhy.service.UserChatBlockService">
 		<property name="blockUserDao" ref="blockUserDao" />
 	</bean>
 	

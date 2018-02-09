@@ -1,4 +1,4 @@
-package com.lihaorong.chat;
+package com.yhy.chat;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;

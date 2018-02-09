@@ -1,4 +1,4 @@
-package com.lihaorong.dao;
+package com.yhy.dao;
 
 import java.util.List;
 import java.util.Map;
